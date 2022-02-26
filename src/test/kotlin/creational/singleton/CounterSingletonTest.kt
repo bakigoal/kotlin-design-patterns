@@ -3,11 +3,11 @@ package creational.singleton
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class CounterSingletonTest{
+internal class CounterSingletonTest {
 
     @Test
     fun `test counter`() {
-        for(i in 1..10) {
+        for (i in 1..10) {
             val increment = CounterSingleton.increment()
             assertEquals(i, increment)
         }
@@ -16,7 +16,7 @@ internal class CounterSingletonTest{
     @Test
     fun `test concurrent counter`() {
         val threads = mutableListOf<Thread>()
-        for(i in 1..10) {
+        for (i in 1..10) {
             threads.add(Thread {
                 println("${Thread.currentThread().name} started")
                 CounterSingleton.increment()

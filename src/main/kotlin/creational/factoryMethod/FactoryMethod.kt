@@ -14,10 +14,10 @@ interface Animal {
     val name: String
 }
 
-class Cat : Animal{
+class Cat : Animal {
     override val name = "Cat"
 }
 
-class Dog : Animal{
+class Dog : Animal {
     override val name = "Dog"
 }
