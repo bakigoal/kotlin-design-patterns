@@ -31,18 +31,18 @@ interface Animal {
 interface Cat : Animal
 interface Dog : Animal
 
-class Siamese(): Cat {
+class Siamese : Cat {
     override val name = "Siamese"
 }
 
-class Persian(): Cat {
+class Persian : Cat {
     override val name = "Persian"
 }
 
-class Buldog(): Dog {
+class Buldog : Dog {
     override val name = "Buldog"
 }
 
-class Doberman(): Dog {
+class Doberman : Dog {
     override val name = "Doberman"
 }
