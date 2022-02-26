@@ -5,9 +5,16 @@ package creational.factoryMethod
  */
 fun animalFactory(animalType: String, breed: String): Animal =
     when (animalType.lowercase()) {
-        "cat" -> Cat()
+        "cat" -> catFactory(breed)
         "dog" -> dogFactory(breed)
         else -> throw IllegalArgumentException("Unknown animal $animalType")
+    }
+
+fun catFactory(breed: String): Cat =
+    when(breed.lowercase()) {
+        "siamese" -> Siamese()
+        "persian" -> Persian()
+        else -> throw IllegalArgumentException("Unknown breed $breed")
     }
 
 fun dogFactory(breed: String): Dog =
@@ -21,11 +28,16 @@ interface Animal {
     val name: String
 }
 
-class Cat : Animal {
-    override val name = "Cat"
+interface Cat : Animal
+interface Dog : Animal
+
+class Siamese(): Cat {
+    override val name = "Siamese"
 }
 
-interface Dog : Animal
+class Persian(): Cat {
+    override val name = "Persian"
+}
 
 class Buldog(): Dog {
     override val name = "Buldog"
