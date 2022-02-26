@@ -12,4 +12,21 @@ internal class CounterSingletonTest{
             assertEquals(i, increment)
         }
     }
+
+    @Test
+    fun `test concurrent counter`() {
+        val threads = mutableListOf<Thread>()
+        for(i in 1..10) {
+            threads.add(Thread {
+                println("${Thread.currentThread().name} started")
+                CounterSingleton.increment()
+                println("${Thread.currentThread().name} ended")
+            })
+        }
+
+        threads.forEach { it.start() }
+        threads.forEach { it.join() }
+
+        assertEquals(11, CounterSingleton.increment())
+    }
 }
