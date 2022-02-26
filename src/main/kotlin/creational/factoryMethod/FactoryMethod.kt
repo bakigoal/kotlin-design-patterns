@@ -25,14 +25,12 @@ class Cat : Animal {
     override val name = "Cat"
 }
 
-open class Dog : Animal {
-    override val name = "Dog"
-}
+interface Dog : Animal
 
-class Buldog(): Dog() {
+class Buldog(): Dog {
     override val name = "Buldog"
 }
 
-class Doberman(): Dog() {
+class Doberman(): Dog {
     override val name = "Doberman"
 }
