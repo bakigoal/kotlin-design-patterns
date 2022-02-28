@@ -2,29 +2,35 @@ package creational.factoryMethod
 
 class FactoryMethod {
 
-    var counter = 0
+    private var counter = 0
+    private val dogFactory = DogFactory()
+    private val catFactory = CatFactory()
 
     fun animalFactory(animalType: String, breed: String): Animal =
         when (animalType.lowercase()) {
-            "cat" -> catFactory(breed, ++counter)
-            "dog" -> dogFactory(breed, ++counter)
+            "cat" -> catFactory.createCat(breed, ++counter)
+            "dog" -> dogFactory.createDog(breed, ++counter)
             else -> throw IllegalArgumentException("Unknown animal $animalType")
         }
 }
 
-fun catFactory(breed: String, id: Int): Cat =
-    when (breed.lowercase()) {
-        "siamese" -> Siamese(id)
-        "persian" -> Persian(id)
-        else -> throw IllegalArgumentException("Unknown breed $breed")
-    }
+class CatFactory {
+    fun createCat(breed: String, id: Int): Cat =
+        when (breed.lowercase()) {
+            "siamese" -> Siamese(id)
+            "persian" -> Persian(id)
+            else -> throw IllegalArgumentException("Unknown breed $breed")
+        }
+}
 
-fun dogFactory(breed: String, id: Int): Dog =
-    when (breed.lowercase()) {
-        "buldog" -> Buldog(id)
-        "doberman" -> Doberman(id)
-        else -> throw IllegalArgumentException("Unknown breed $breed")
-    }
+class DogFactory {
+    fun createDog(breed: String, id: Int): Dog =
+        when (breed.lowercase()) {
+            "buldog" -> Buldog(id)
+            "doberman" -> Doberman(id)
+            else -> throw IllegalArgumentException("Unknown breed $breed")
+        }
+}
 
 interface Animal {
     val id: Int
