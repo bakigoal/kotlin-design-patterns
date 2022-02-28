@@ -22,8 +22,10 @@ internal class FactoryMethodTest {
             Persian::class.java,
             Doberman::class.java
         )
+        val factory = FactoryMethod()
         val actual = animalTypes.stream()
-            .map { (type, breed) -> animalFactory(type, breed) }
+            .map { (type, breed) -> factory.animalFactory(type, breed) }
+            .peek { println(it.name+" " + it.id) }
             .map { it::class.java }
             .collect(toList())
         assertContentEquals(expected, actual)
